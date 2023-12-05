@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+   
+    <div class="container">
+        <a class="navbar-brand text-white">TDB</a>
+
+        <button class="navbar-toggler text-white" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+       
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+          
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Accueil</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'my-articles' %}">Mes articles</a>
+                </li>
+            </ul>
+           
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                  {%  if user.is_authenticated %}
+                <li class="nav-item">
+                     <span class="nav-link">{{user.username}}</span>
+                </li>
+                    {%  endif %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-user text-white"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            
+                            {%  if user.is_authenticated %}
+                          <a class="dropdown-item" href="#">Déconnexion</a>
+                            {% endif  %}
+                             
+                        </div>
+                      </li>
+            </ul>
+            
+        </div>
+    </div>
+</nav>
+

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+ <div class="container">
+ <h2>Liste de recherche</h2>
+    <div class="row">
+    {% for article in liste_article %}
+    
+    <div class="card col-12 col-md-6 col-lg-3 col-xl-3">
+              
+
+        <!-- Card image -->
+         
+          {% if article.image == "http://default" %}
+
+          
+            <a href="{% url 'detail' article.id %}">
+
+         <img class="card-img-top" src="{%  static 'img/logo.png' %}" alt="Card image cap" style="height: 250px;">
+          </a>
+          {%  else %}
+       
+        <a href="{% url 'detail' article.id %}">
+
+        <img class="card-img-top" src="{{article.image.url}}" alt="Card image cap" style="height: 250px;">
+       </a>
+         {% endif %}
+
+        <!-- Card content -->
+        <div class="card-body" style="height: 240px;">
+
+            <!-- Title -->
+            <h4 class="card-title"><a href="{% url 'detail' article.id %}">{{article.title}}</a></h4>
+            <!-- Text -->
+            <p class="card-text">{{article.desc|truncatewords:8}}</p>
+            <p class="card-text"> Publié il ya {{article.created_at|timesince}}</p>
+            <!-- Button -->
+            <a href="{% url 'detail' article.id %}" class="btn btn-primary">Lire la suite</a>
+
+        </div>
+
+    </div>
+    <!-- Card -->
+
+       {% endfor %}  
+
+    </div>
+ </div>
+{% endblock %}
